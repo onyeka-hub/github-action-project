@@ -4,6 +4,9 @@
 name: Node.js CI
 run-name: ${{ github.actor }} Node Application
 
+env:
+    CUSTOM_VAR: onyeka
+
 
 # Specifies when the workflow should be triggered
 on:
@@ -25,6 +28,18 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so the job can access it
       - name: Check out repository code
         uses: actions/checkout@v2
+
+      - name: Use environment variable
+        run: echo $CUSTOM_VAR
+
+      - name: Use secret
+        run: |
+          echo "Access Token: ${{ secrets.ACCESS_TOKEN }}"
+
+      - name: Run Linter
+        run: npx eslint .
+        # 'npx eslint .' runs the ESLint tool on all the files in your repository.
+        # ESLint is a static code analysis tool used to identify problematic patterns in JavaScript code.
 
   example_matrix:
     # Strategy for running the jobs - this section is useful for testing across multiple environments
