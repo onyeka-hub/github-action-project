@@ -37,7 +37,8 @@ jobs:
           echo "Access Token: ${{ secrets.ACCESS_TOKEN }}"
 
       - name: Run Linter
-        run: npx eslint .
+        run: npm install -g eslint
+      - run: npx eslint .
         # 'npx eslint .' runs the ESLint tool on all the files in your repository.
         # ESLint is a static code analysis tool used to identify problematic patterns in JavaScript code.
 
